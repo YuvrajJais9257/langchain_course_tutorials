@@ -1,0 +1,58 @@
+{
+  "StatusCode": 200,
+  "data": {
+    "column_names": ["Date", "Week1", "Week3", "Week4"],
+    "data": [
+      {
+        "Date": "2025-12-15",
+        "Week1": 0,
+        "Week3": 0,
+        "Week4": 1
+      },
+      {
+        "Date": "2025-12-17",
+        "Week1": 0,
+        "Week3": 1,
+        "Week4": 0
+      },
+      {
+        "Date": "2025-12-22",
+        "Week1": 0,
+        "Week3": 1,
+        "Week4": 0
+      },
+      {
+        "Date": "2026-01-02",
+        "Week1": 1,
+        "Week3": 0,
+        "Week4": 0
+      },
+      {
+        "Date": "2026-01-05",
+        "Week1": 1,
+        "Week3": 0,
+        "Week4": 0
+      }
+    ],
+    "report_type": "table",
+    "total_records": 6,
+    "table_customization_options": {
+      "header_background_colour": "#d7e0f9",
+      "header_font_size": "14px",
+      "header_text_colour": "#221448",
+      "header_font_family": "Verdana",
+      "header_font_weight": "bold",
+      "body_background_colour": "#e0e8f0",
+      "body_font_size": "12px",
+      "body_text_colour": "#333333",
+      "body_font_family": "Arial",
+      "body_font_weight": "normal",
+      "table_type": "grouped",
+      "column_mappings": {
+        "old_column_names": ["Week", "Date", "ticket_count"],
+        "new_column_names": ["week", "date", "ticket_count"]
+      },
+      "group_by_column": "Date"
+    }
+  }
+}
