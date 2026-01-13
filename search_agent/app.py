@@ -125,32 +125,23 @@ if search_button:
             )
 
             prompt = ChatPromptTemplate.from_messages([
-                 ("system", """
-                    You are an expert career headhunter specialized in entry-level and junior placements.
-     
-                    GOAL: Find AT LEAST 5 live job postings for '{role}' in '{location}'.
-     
-                    CRITICAL CONSTRAINTS:
-                    1. EXPERIENCE LIMIT: Every job MUST be suitable for someone with 0-2 years of experience. 
-                        - DO NOT include roles requiring 3+ years, 'Senior', or 'Lead' levels.
-                        - Check snippets for "1 year," "2 years," or "entry level."
-                    2. QUANTITY: You must provide a list of exactly 5 or more distinct opportunities.
-     
-                    INSTRUCTIONS:
-                    1. Use the search tool with queries like "[Role] junior jobs [Location]" and "[Role] 0-2 years experience".
-                    2. Cross-reference with the user's resume context: {resume_data}
-                    3. Once you have at least 5 qualifying jobs, call 'submit_job_report'.
-                        - 'answer': A summary explaining why these 5+ jobs are a perfect fit for a junior-level candidate.
-                        - 'source': A list of objects with 'title' and 'url'.
-     
-                    Do not stop until you have found 5 matching jobs.
-                """),
+            ("system", """
+                You are a junior-tech job search assistant.
+
+                TASK:
+                - Find 5 junior (0–2 years) job listings matching the user's role and location.
+                - Prefer "Junior", "Entry Level", or "Associate" titles.
+
+                RULES:
+                - Exclude Senior, Lead, or 3+ years roles.
+                - Once 5 jobs are found, submit the report immediately.
+            """),
                 ("human", "{user_query}"),
                 ("placeholder", "{agent_scratchpad}"),
             ])
 
             agent =create_tool_calling_agent(llm, tools, prompt)
-            agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+            agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True,    max_iterations=5)
 
             query_str = (
               f"Find active job postings for '{target_role}' in '{location}'. "
